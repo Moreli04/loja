@@ -26,7 +26,6 @@ import com.moreli.loja.model.Produto;
 import com.moreli.loja.repository.CategoriaRepository;
 import com.moreli.loja.repository.CidadeRepository;
 import com.moreli.loja.repository.ClienteRepository;
-import com.moreli.loja.repository.EnderecoRepository;
 import com.moreli.loja.repository.EstadoRepository;
 import com.moreli.loja.repository.ItemPedidoRepository;
 import com.moreli.loja.repository.PagamentoRepository;
@@ -50,9 +49,6 @@ public class LojaApplication implements CommandLineRunner {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
-
-	@Autowired
-	private EnderecoRepository enderecoRepository;
 	
 	@Autowired
 	private PedidoRepository pedidoRepository;
@@ -150,7 +146,6 @@ public class LojaApplication implements CommandLineRunner {
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
 		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 
 		final Pedido ped1 = new Pedido();
 		ped1.setInstante(LocalDateTime.of(2017, 9, 30, 10, 32));
