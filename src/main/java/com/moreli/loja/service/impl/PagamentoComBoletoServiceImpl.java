@@ -10,7 +10,7 @@ import com.moreli.loja.model.PagamentoComBoleto;
 public class PagamentoComBoletoServiceImpl {
 
 	private static int QTD_DIAS_PARA_REALIZAR_PAGAMENTO = 7;
-	public void prepararPagamentoParaInclusao(PagamentoComBoleto pagamento) {
+	public void prepararParaInsert(PagamentoComBoleto pagamento) {
 		final LocalDate dataVencimento =
 				pagamento.getDataPagamento().plusDays(QTD_DIAS_PARA_REALIZAR_PAGAMENTO);
 		pagamento.setDataVencimento(dataVencimento);

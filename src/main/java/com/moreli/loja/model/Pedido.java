@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -48,12 +50,19 @@ public class Pedido implements Serializable{
 	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco EnderecoDeEntrega;
 	
-	@OneToMany(mappedBy = "id.pedido")
+	@OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
 	private Set<ItemPedido> itens = new HashSet<>();
 	
 	public BigDecimal getValorTotal() {
 		return itens.stream()
 			.map(item-> item.getSubTotal())
 			.reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+	
+	@PrePersist
+	@PreUpdate
+	private void setarClienteNosDependentes(){
+		itens.forEach(item -> item.setPedido(this));
+		pagamento.setPedido(this);
 	}
 }
