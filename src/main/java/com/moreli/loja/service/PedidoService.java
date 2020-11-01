@@ -5,4 +5,6 @@ import com.moreli.loja.model.Pedido;
 public interface PedidoService {
 
 	Pedido findById(Long id);
+
+	Pedido insert(Pedido pedido);
 }

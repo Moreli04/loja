@@ -1,6 +1,7 @@
 package com.moreli.loja.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -49,4 +50,10 @@ public class Pedido implements Serializable{
 	
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
+	
+	public BigDecimal getValorTotal() {
+		return itens.stream()
+			.map(item-> item.getSubTotal())
+			.reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
 }

@@ -50,11 +50,13 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Cliente> findAll() {
 		return repository.findAll();
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public Page<Cliente> findAll(Pageable pageable) {
 		return repository.findAll(pageable);
 	}

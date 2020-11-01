@@ -1,7 +1,6 @@
 package com.moreli.loja.resources;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -33,11 +32,6 @@ public class CategoriaController {
 	private CategoriaService service;
 	
 	@GetMapping
-	public ResponseEntity<List<CategoriaDTO>> findAll()  {
-		return ResponseEntity.ok().body(ModelUtils.convertModelList(service.findAll(), CategoriaDTO.class));
-	}
-	
-	@GetMapping("/paginada")
 	public Page<Categoria> findAll(@PageableDefault Pageable pageable)  {
 		return service.findAll(pageable);
 	}
