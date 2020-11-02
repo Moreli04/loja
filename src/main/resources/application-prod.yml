@@ -1,0 +1,13 @@
+spring: 
+  datasource: 
+    url: mysql://be8132e6df3d19:c76596b6@us-cdbr-east-02.cleardb.com/heroku_b402378915be2b2?reconnect=true
+    username: root
+    password: 
+
+  jpa:
+    hibernate: 
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
