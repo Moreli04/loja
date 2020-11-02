@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.moreli</groupId>
-	<artifactId>loja</artifactId>
+	<artifactId>loja-moreli</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>loja</name>
 	<description>Estudo de caso de um mini e-commerce</description>

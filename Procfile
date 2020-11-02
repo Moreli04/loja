@@ -1,1 +1,1 @@
-java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/loja-0.0.1-SNAPSHOT.jar
+java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/loja-moreli-0.0.1-SNAPSHOT.jar
