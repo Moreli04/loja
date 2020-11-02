@@ -23,11 +23,16 @@ public class ItemPedido implements Serializable{
 	@EmbeddedId
 	private ItemPedidoPK id =  new ItemPedidoPK();
 	
-	private Double desconto;
+	private BigDecimal desconto;
 	
 	private Long quantidade;
 	
 	private BigDecimal preco;
+	
+	public BigDecimal getSubTotal() {
+		final BigDecimal precoSemDesconto = preco.subtract(desconto);
+		return precoSemDesconto.multiply(BigDecimal.valueOf(quantidade));
+	}
 	
 	@JsonIgnore
 	public Pedido getPedido() {

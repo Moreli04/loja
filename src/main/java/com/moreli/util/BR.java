@@ -1,4 +1,4 @@
-package com.moreli.loja.utils;
+package com.moreli.util;
 
 public class BR {
 	// CPF

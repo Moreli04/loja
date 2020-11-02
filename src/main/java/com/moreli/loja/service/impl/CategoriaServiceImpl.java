@@ -51,11 +51,13 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Categoria> findAll() {
 		return repository.findAll();
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public Page<Categoria> findAll(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
