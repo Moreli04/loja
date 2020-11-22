@@ -158,7 +158,7 @@ public class DBService {
 		
 		Cliente cli1 = new Cliente();
 		cli1.setNome("Maria Silva");
-		cli1.setEmail("maria@gmail.com");
+		cli1.setEmail("leosmoreli@gmail.com");
 		cli1.setCpfOuCnpj("36378912377");
 		cli1.setTipo(TipoCliente.PESSOA_FISICA);
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));

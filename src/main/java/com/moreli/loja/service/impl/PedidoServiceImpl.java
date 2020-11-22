@@ -11,6 +11,8 @@ import com.moreli.loja.exceptions.ObjectNotFoundException;
 import com.moreli.loja.model.PagamentoComBoleto;
 import com.moreli.loja.model.Pedido;
 import com.moreli.loja.repository.PedidoRepository;
+import com.moreli.loja.service.ClienteService;
+import com.moreli.loja.service.EmailService;
 import com.moreli.loja.service.PedidoService;
 
 @Service
@@ -24,6 +26,12 @@ public class PedidoServiceImpl implements PedidoService {
 	
 	@Autowired
 	private PagamentoComBoletoServiceImpl pagamentoComBoletoService;
+	
+	@Autowired 
+	private ClienteService clienteService;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -36,6 +44,7 @@ public class PedidoServiceImpl implements PedidoService {
 	@Transactional
 	public Pedido insert(Pedido pedido) {
 		pedido.setInstante(LocalDateTime.now());
+		pedido.setCliente(clienteService.findById(pedido.getCliente().getId()));
 		pedido.getPagamento().setEstado(EstadoPagamento.PENDENTE);
 		
 		if(pedido.getPagamento() instanceof PagamentoComBoleto) {
@@ -45,6 +54,7 @@ public class PedidoServiceImpl implements PedidoService {
 		
 		itemPedidoService.prepararParaInsert(pedido.getItens());
 		repository.save(pedido);
+		emailService.sendOrderConfirmationEmail(pedido);
 		return pedido;
 	}
 
